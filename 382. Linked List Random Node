@@ -1,0 +1,23 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    curpointer=None
+    stack=None
+    counter=0
+    def __init__(self, head: Optional[ListNode]):
+        self.stack=head
+        self.curpointer=head
+        self.counter=0
+        while self.curpointer:
+            self.counter+=1
+            self.curpointer=self.curpointer.next
+    def getRandom(self) -> int:
+        n=random.uniform(0,self.counter)
+        self.curpointer=self.stack
+        while n>1:
+            self.curpointer=self.curpointer.next
+            n-=1
+        return self.curpointer.val
